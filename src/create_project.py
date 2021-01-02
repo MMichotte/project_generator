@@ -15,10 +15,10 @@ for arg_i in range(len(args)):
         body['name'] = args[arg_i + 1]
     elif args[arg_i] == "-d" or args[arg_i] == "--description":
         body['description'] = args[arg_i + 1]
-
+    elif args[arg_i] == "-l" or args[arg_i] == "--license":
+        body['license_template'] = args[arg_i + 1]
 
 body['auto_init'] = True
-body['license_template'] = 'mit'
 
 url = BASE_URL + 'user/repos'
 resp = requests.post(
@@ -27,4 +27,7 @@ resp = requests.post(
     json=body
 )
 
-print(resp.status_code)
+if resp.status_code != 201:
+    print("(" + str(resp.status_code) + ") " + resp.json()["errors"][0]["message"])
+else:
+    print(resp.status_code)
