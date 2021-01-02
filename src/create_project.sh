@@ -19,11 +19,7 @@ main () {
   done
 
   if [ "$CONFIGURE" = true ] ; then
-    read -p $'Enter your \e[1mGitHub Username\e[0m : ' USERNAME
-    read -p $'Paste your \e[1mGitHub Personal Access Token\e[0m : ' TOKEN 
-    echo "GITHUB_USER=\"$USERNAME\"" > $CODE_DIR/.env
-    echo "GITHUB_API_TOKEN=\"$TOKEN\"" >> $CODE_DIR/.env
-    printf $'\e[32mConfig saved.\e[0m\n'
+    configure
     exit 0
   fi
 
@@ -32,10 +28,22 @@ main () {
     printf $'Run \e[32mcreate_project --help\e[0m to get more information.\n'
     exit 1
   else
+    if [ ! -f "$CODE_DIR/.env" ]; then
+      printf $'Initial configuration :\n'
+      configure
+    fi
     export $(grep -v '^#' $CODE_DIR/.env | xargs)
     create_github_repo
     exit 0
   fi
+}
+
+configure () {
+  read -p $'Enter your \e[1mGitHub Username\e[0m : ' USERNAME
+  read -p $'Paste your \e[1mGitHub Personal Access Token\e[0m : ' TOKEN 
+  echo "GITHUB_USER=\"$USERNAME\"" > $CODE_DIR/.env
+  echo "GITHUB_API_TOKEN=\"$TOKEN\"" >> $CODE_DIR/.env
+  printf $'\e[32mConfig saved.\e[0m\n'
 }
 
 clone_remote () {

@@ -27,7 +27,9 @@ resp = requests.post(
     json=body
 )
 
-if resp.status_code != 201:
+if resp.status_code == 401:
+    print("(" + str(resp.status_code) + ") " + resp.json()["message"])
+elif resp.status_code == 422:
     print("(" + str(resp.status_code) + ") " + resp.json()["errors"][0]["message"])
 else:
     print(resp.status_code)
