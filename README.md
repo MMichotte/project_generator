@@ -20,5 +20,5 @@
 1. Navigate to the root folder in which you want to create a new project. 
 2. Run :
    ```bash
-   create_project -d "the project description." my_new_project
+   create_project my_new_project -d "the project description." 
    ```

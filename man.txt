@@ -3,7 +3,7 @@
     create_project - create a new project folder and the corresponding Github repository.
 
 \e[1mSYNOPSIS\e[0m
-    create_project [OPTION]... [NEW-PROJECT-NAME]...
+    create_project [NEW-PROJECT-NAME]... [OPTION]... 
 
 \e[1mOPTIONS\e[0m
 
@@ -29,14 +29,14 @@
 
     The command:
 
-        create_project -d "a beautiful description" my_new_project
+        create_project my_new_project -d "a beautiful description"
 
     will create a new Github repository named "my_new_project" 
     with as description "a beautiful description" and clone it on your local machine.
 
     The command:
 
-        create_project -d "a beautiful description" -l gpl-3.0 my_new_project
+        create_project my_new_project -d "a beautiful description" -l gpl-3.0
 
     will create a new Github repository named "my_new_project" 
     with as description "a beautiful description", a gpl-3.0 license (GNU General Public License) 

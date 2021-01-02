@@ -14,7 +14,15 @@ main () {
       -l|--license) REPO_LICENSE="$2"; shift 2;;
       -c|--config) CONFIGURE=true; break ;;
       -h|--help) printf "$(cat $CODE_DIR/man.txt)\n\n"; exit 0 ;;
-      *) REPO_NAME="$1"; break ;;
+      *) 
+        if [ -z $REPO_NAME ]; then 
+          REPO_NAME="$1"
+        else 
+          printf $'\e[31mERROR:\e[0m invalid arg \e[31m'"$1"'\e[0m !\n'
+          exit 1
+        fi
+        shift
+        ;;
     esac
   done
 
@@ -31,6 +39,9 @@ main () {
     if [ ! -f "$CODE_DIR/.env" ]; then
       printf $'Initial configuration :\n'
       configure
+    elif [ -d "./$REPO_NAME" ]; then
+      printf $'\e[31mERROR:\e[0m A directory named \e[34m'"$REPO_NAME"'\e[0m already exists in this folder!\n'
+      exit 1
     fi
     export $(grep -v '^#' $CODE_DIR/.env | xargs)
     create_github_repo
