@@ -7,6 +7,8 @@
 3. Opens your new project in `VsCode`. 
 
 ## Setup : 
+❗️ You must have `python3`installed on your machine! 
+
 1. Download/clone this repository and save it somewhere on your computer. 
 2. Modify and copy the content of the `.zshrc` file from this repository to your `.bashrc`or `.zshrc`file.
 3. Get your `Github Access Token` ([how to get one?](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token)) (⚠️ You must at least give all the `repository privileges` to your token)

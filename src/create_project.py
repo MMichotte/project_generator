@@ -1,6 +1,11 @@
 import sys
-import requests
-from decouple import config
+try:
+    import requests
+    from decouple import config
+except ImportError:
+    print('importError')
+    quit()
+
 
 GITHUB_USER = config("GITHUB_USER")
 API_TOKEN = config("GITHUB_API_TOKEN")

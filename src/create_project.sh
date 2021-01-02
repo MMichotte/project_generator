@@ -42,9 +42,7 @@ main () {
     fi
     if [ ! -d "$CODE_DIR/venv" ]; then
       printf $'Configuring python venv (once)\n'
-      python3 -m venv $CODE_DIR/venv
-      source $CODE_DIR/venv/bin/activate
-      pip3 install -r $CODE_DIR/requirements.txt
+      setup_venv
     fi
     if [ -d "./$REPO_NAME" ]; then
       printf $'\e[31mERROR:\e[0m A directory named \e[34m'"$REPO_NAME"'\e[0m already exists in this folder!\n'
@@ -54,6 +52,12 @@ main () {
     create_github_repo
     exit 0
   fi
+}
+
+setup_venv () {
+    python3 -m venv $CODE_DIR/venv
+    source $CODE_DIR/venv/bin/activate
+    pip3 install -r $CODE_DIR/requirements.txt
 }
 
 configure () {
@@ -74,6 +78,7 @@ create_github_repo () {
   STATUS_CODE=$($CODE_DIR/venv/bin/python3 $DIR/create_project.py --name $REPO_NAME --description "${REPO_DESCRIPTION}" --license $REPO_LICENSE)
 
   case "$STATUS_CODE" in 
+    "importError") rm -rf $CODE_DIR/venv; printf $'\e[31mERROR:\e[0m python venv was corrupted, please retry!';;
     "201" ) clone_remote;;
     "422" ) printf $'❌ repository \e[34m'"${REPO_NAME}"$'\e[0m already exists!\n' && exit 1;;
     * ) echo "❌  error: ${STATUS_CODE}" && exit 1;;
