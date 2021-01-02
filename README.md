@@ -5,7 +5,7 @@
 
 `Project_generator` enables you to create a new project folder and the corresponding git repository in just one command. 
 #### What does it really do ? 
-1. Using the Github API it creates a new Github Repository with a given **name**, **description** (*optional*), a **README** file and by default the **MIT licence**.
+1. Using the Github API it creates a new Github Repository with a given **name**, **description** (*optional*), a **README** file and by default the **MIT license**.
 2. Clones the newly created Github Repository in your local folder.
 3. Opens your new project in `VsCode`. 
 
