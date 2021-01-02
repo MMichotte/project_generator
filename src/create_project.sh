@@ -39,7 +39,14 @@ main () {
     if [ ! -f "$CODE_DIR/.env" ]; then
       printf $'Initial configuration :\n'
       configure
-    elif [ -d "./$REPO_NAME" ]; then
+    fi
+    if [ ! -d "$CODE_DIR/venv" ]; then
+      printf $'Configuring python venv (once)\n'
+      python3 -m venv $CODE_DIR/venv
+      source $CODE_DIR/venv/bin/activate
+      pip3 install -r $CODE_DIR/requirements.txt
+    fi
+    if [ -d "./$REPO_NAME" ]; then
       printf $'\e[31mERROR:\e[0m A directory named \e[34m'"$REPO_NAME"'\e[0m already exists in this folder!\n'
       exit 1
     fi
@@ -64,7 +71,7 @@ clone_remote () {
 
 create_github_repo () {
 
-  STATUS_CODE=$(python3 $DIR/create_project.py --name $REPO_NAME --description "${REPO_DESCRIPTION}" --license $REPO_LICENSE)
+  STATUS_CODE=$($CODE_DIR/venv/bin/python3 $DIR/create_project.py --name $REPO_NAME --description "${REPO_DESCRIPTION}" --license $REPO_LICENSE)
 
   case "$STATUS_CODE" in 
     "201" ) clone_remote;;
