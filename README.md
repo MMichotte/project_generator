@@ -1,6 +1,6 @@
 # project_generator
 
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/MMichotte/US-to-TrelloCard/blob/main/LICENSE) [![Generic badge](https://img.shields.io/badge/Python-3.8-purple.svg)](https://shields.io/)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/MMichotte/US-to-TrelloCard/blob/main/LICENSE) [![Generic badge](https://img.shields.io/badge/Python-3.7-blue.svg)](https://shields.io/) [![Generic badge](https://img.shields.io/badge/platform-osx_|_linux-white.svg)](https://shields.io/)
 
 
 `Project_generator` enables you to create a new project folder and the corresponding git repository in just one command. 
