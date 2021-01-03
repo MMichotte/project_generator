@@ -1,11 +1,11 @@
 
-\e[1mNAME\e[0m
+\033[1mNAME\033[0m
     create_project - create a new project folder and the corresponding Github repository.
 
-\e[1mSYNOPSIS\e[0m
+\033[1mSYNOPSIS\033[0m
     create_project [NEW-PROJECT-NAME]... [OPTION]... 
 
-\e[1mOPTIONS\e[0m
+\033[1mOPTIONS\033[0m
 
     -d, --description       Add a description to your Github repository.
                             Your description will also be written in your README file
@@ -18,7 +18,7 @@
     -h, --help              Display the help page.
 
 
-\e[1mEXAMPLES\e[0m
+\033[1mEXAMPLES\033[0m
     The command:
     
         create_project my_new_project 
