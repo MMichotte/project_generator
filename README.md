@@ -50,7 +50,7 @@ OPTIONS
                             Available: see < Github gitignore template list >
                             DEFAULT= / 
 
-    -nr, --no-readme        Don't add a readme file on creation. 
+    -nr, --no-readme        Don\'t add a readme file on creation. 
 
     -p, --private           Make this repository private on Github.
 
