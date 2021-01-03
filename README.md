@@ -1,11 +1,11 @@
 # project_generator
 
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/MMichotte/US-to-TrelloCard/blob/main/LICENSE) [![Generic badge](https://img.shields.io/badge/Python-3.7-blue.svg)](https://shields.io/) [![Generic badge](https://img.shields.io/badge/platform-osx_|_linux-white.svg)](https://shields.io/)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/MMichotte/US-to-TrelloCard/blob/main/LICENSE) [![Generic badge](https://img.shields.io/badge/Python-3.7-blue.svg)](https://shields.io/) [![Generic badge](https://img.shields.io/badge/platform-osx_|_linux_|_win-white.svg)](https://shields.io/)
 
 
-`Project_generator` enables you to create a new project folder and the corresponding git repository in just one command. 
+`Project_generator` enables you to create a new project folder and the corresponding Github repository in just one command. 
 #### What does it really do ? 
-1. Using the Github API it creates a new Github Repository with a given **name**, **description** (*optional*), a **README** file and by default the **MIT licence**.
+1. Using the Github API it creates a new Github Repository with your new project's name and a few options such as a license, a readme file and more. 
 2. Clones the newly created Github Repository in your local folder.
 3. Opens your new project in `VsCode`. 
 
@@ -27,3 +27,62 @@
    ```bash
    create_project my_new_project -d "the project description." 
    ```
+
+
+## Manpage :
+```bash
+NAME
+    create_project - create a new project folder and the corresponding public repository.
+
+SYNOPSIS
+    create_project [NEW-PROJECT-NAME]... [OPTION]... 
+
+OPTIONS
+
+    -d, --description       Add a description to your Github repository.
+                            Your description will also be written in your README file
+
+    -l, --license           Add a Github license to your project. DEFAULT=mit 
+                            Available: see < Github license list >
+                            DEFAULT= /
+
+    -gi, --gitignore        Add a .gitignore file from a given template.
+                            Available: see < Github gitignore template list >
+                            DEFAULT= / 
+
+    -nr, --no-readme        Don't add a readme file on creation. 
+
+    -p, --private           Make this repository private on Github.
+
+    -c, --config            Configure your GitHub credentials.
+    
+    --config-defaults       Configure a default value for the licence and gitignore.
+
+    -h, --help              Display the help page.
+
+
+EXAMPLES
+    The command:
+    
+        create_project my_new_project 
+
+    will create a new Github repository named "my_new_project"
+    and clone it on your local machine.
+
+
+    The command:
+
+        create_project my_new_project -d "a beautiful description"
+
+    will create a new Github repository named "my_new_project" 
+    with as description "a beautiful description" and clone it on your local machine.
+
+    The command:
+
+        create_project my_new_project -d "a beautiful description" -l gpl-3.0 -gi Python -p 
+
+    will create a new private Github repository named "my_new_project" 
+    with as description "a beautiful description", a gpl-3.0 license (GNU General Public License), 
+    a Python .gitignore file and clone it on your local machine.
+
+```
