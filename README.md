@@ -10,7 +10,7 @@
 3. Opens your new project in `VsCode`. 
 
 ## Setup : 
-❗️ You must have `python3`installed on your machine! 
+❗️ You must have `python3` and `pip`installed on your machine! 
 
 1. Download/clone this repository and save it somewhere on your computer. 
 2. Modify and copy the content of the `.zshrc` file from this repository to your `.bashrc`or `.zshrc`file.
