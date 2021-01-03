@@ -2,27 +2,10 @@
 @Author: Martin Michotte
 """
 import sys
-import subprocess
-from helpers import check_for_dotenv
 from colors import colors as c
-try:
-    import requests
-    if not hasattr(requests, 'post'):
-        raise ImportError
-    from decouple import config
-except ImportError:
-    print(f'{c.yellow}WARNING:{c.rst} Some modules are missing, trying to install them :')
-    try:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", 'requests'])
-        subprocess.check_call([sys.executable, "-m", "pip", "install", 'python-decouple'])
-        print(f'{c.green}SUCCES:{c.rst} All required modules were successfully installed.')
-        sys.exit(0)
-    except Exception:
-        print(f'{c.red}ERROR:{c.rst} Some modules couldn\'t be installed.')
-        sys.exit(1)
+import requests
+from decouple import config
 
-
-check_for_dotenv()
 
 GITHUB_USER = config("GITHUB_USER")
 API_TOKEN = config("GITHUB_API_TOKEN")
@@ -55,7 +38,29 @@ def create_github_repo(repo):
         sys.exit(1)
     elif resp.status_code == 422 :
         print(f'❌ Repository {c.blue}{repo.name}{c.rst} already exists!')
+        print(resp.json())
         sys.exit(1)
     else:
         print(f'❌ Unknown error: ({resp.status_code}) : {resp.json()}')
         sys.exit(1)
+
+def get_available_licenses ():
+    url = BASE_URL + 'licenses'
+    resp = requests.get(url)
+    
+    licenses = []
+    for lic in resp.json():
+        licenses.append(lic["key"])
+    
+    return licenses
+
+def get_available_gitignores ():
+    url = BASE_URL + 'gitignore/templates'
+    resp = requests.get(url)
+    
+    return resp.json()
+
+
+if __name__ == "__main__":
+    print(get_available_licenses())
+    print(get_available_gitignores())
