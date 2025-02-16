@@ -1,4 +1,4 @@
 .env
-.env2
 venv
 __pycache__
+.DS_Store
